@@ -1,0 +1,66 @@
+{
+  "name": "semantic-kanban",
+  "version": "0.0.1",
+  "description": "A simple Kanban Component built with Semantic-UI + Vue.js",
+  "main": "semanticKanban.vue",
+  "scripts": {
+    "test": "xo --ignore test/helpers/setup.js --ignore test/test.js && nyc ava"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "keywords": [
+    "kanban",
+    "vuejs",
+    "semantic-ui"
+  ],
+  "author": {
+    "name": "Danilo Sampaio",
+    "email": "danilo.sampaio@gmail.com",
+    "url": "github.org/danilosampaio"
+  },
+  "repository": "danilosampaio/semantic-kanban",
+  "license": "MIT",
+  "peerDependencies": {
+    "jquery": "^3.2.1",
+    "semantic-ui": "^2.2.10",
+    "vue": "^2.3.3"
+  },
+  "dependencies": {
+    "@fengyuanchen/datepicker": "github:fengyuanchen/datepicker",
+    "dragula": "^3.7.2",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "greedy-wrap": "^0.2.1"
+  },
+  "devDependencies": {
+    "ava": "^0.21.0",
+    "browser-env": "^3.1.0",
+    "coveralls": "^2.13.1",
+    "nyc": "^11.1.0",
+    "require-extension-hooks": "^0.3.0",
+    "require-extension-hooks-babel": "^0.1.1",
+    "require-extension-hooks-vue": "^0.4.0",
+    "xo": "^0.18.2",
+    "babel-core": "^6.25.0",
+    "babel-preset-env": "^1.6.0"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "extension": [
+      ".js",
+      ".vue"
+    ]
+  },
+  "ava": {
+    "babel": {
+      "presets": ["env"]
+    },
+    "require": [
+      "./test/helpers/setup.js"
+    ]
+  }
+}
