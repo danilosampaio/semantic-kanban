@@ -22,8 +22,6 @@
   "repository": "danilosampaio/semantic-kanban",
   "license": "MIT",
   "peerDependencies": {
-    "jquery": "^3.2.1",
-    "semantic-ui": "^2.2.10",
     "vue": "^2.3.3"
   },
   "dependencies": {
@@ -31,7 +29,9 @@
     "dragula": "^3.7.2",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
-    "greedy-wrap": "^0.2.1"
+    "greedy-wrap": "^0.2.1",
+    "jquery": "^3.2.1",
+    "semantic-ui": "^2.2.10"
   },
   "devDependencies": {
     "ava": "^0.21.0",
