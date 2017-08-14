@@ -47,7 +47,10 @@
 <script>
 	import _ from 'lodash';
 	import moment from 'moment';
+	import $ from 'jquery';
+	import '../node_modules/semantic-ui/dist/semantic';
 	import '../node_modules/@fengyuanchen/datepicker/dist/datepicker.js';
+	import '../node_modules/@fengyuanchen/datepicker/dist/datepicker.css';
 
 	export default {
 		props: ['owners'],

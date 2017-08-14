@@ -99,15 +99,15 @@
 
 <script type="text/javascript">
 	import _ from 'lodash';	
+	import $ from 'jquery';
 	import dragula from 'dragula';
-	import ErrorMessage from './components/errorMessage.vue';
 	import BacklogCard from './components/backlogCard.vue';
 	import TaskCard from './components/taskCard.vue';
 	import TaskDialog from './components/taskDialog.vue';
+	import './node_modules/dragula/dist/dragula.css'; 
 
 	export default {
 		components: {
-			ErrorMessage,
 			BacklogCard,
 			TaskCard,
 			TaskDialog
