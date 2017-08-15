@@ -9,7 +9,7 @@
 - Customizable API
 - Beautiful
 
-# [![Kanban](img/print.png)](img/print.png)
+# [![Kanban](src/assets/print.png)](src/assets/print.png)
 
 ## Install
 
