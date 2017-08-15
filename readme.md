@@ -152,7 +152,7 @@ $ npm install --save semantic-kanban
 
 ### Results:
 
-# [![Kanban](img/custom.png)](img/custom.png)
+# [![Kanban](src/assets/custom.png)](src/assets/custom.png)
 
 
 ## Props
