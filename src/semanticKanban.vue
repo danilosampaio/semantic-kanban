@@ -328,10 +328,10 @@
 						return false
 					}
 				})
-			},
-			mounted () {
-				this.configDragula()
 			}
+		},
+		mounted () {
+			this.configDragula()
 		}
 	}
 </script>
