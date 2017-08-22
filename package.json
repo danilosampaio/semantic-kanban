@@ -7,6 +7,7 @@
     "email": "danilo.sampaio@gmail.com",
     "url": "github.org/danilosampaio"
   },
+  "repository": "danilosampaio/semantic-kanban",
   "main": "src/semanticKanban.vue",
   "scripts": {
     "dev": "node build/dev-server.js",
