@@ -1,21 +1,22 @@
 {
-	"base": "",
+	"base": "semantic",
 	"paths": {
 		"source": {
-			"config" : "src/theme.config",
-			"definitions" : "src/definitions/",
-			"site" : "src/site/",
-			"themes" : "src/themes/"
+			"config": "src/theme.config",
+			"definitions": "src/definitions/",
+			"site": "src/site/",
+			"themes": "src/themes/"
 		},
 		"output": {
-			"packaged" : "dist/",
-			"uncompressed" : "dist/components/",
-			"compressed" : "dist/components/",
-			"themes" : "dist/themes/"
+			"packaged": "dist/",
+			"uncompressed": "dist/components/",
+			"compressed": "dist/components/",
+			"themes": "dist/themes/"
 		},
-		"clean" : "dist/"
+		"clean": "dist/"
 	},
-	"permission" : false,
+	"permission": false,
 	"autoInstall": true,
-	"rtl": false
+	"rtl": false,
+	"version": "2.2.13"
 }
