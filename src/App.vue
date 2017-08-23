@@ -3,7 +3,8 @@
 		:tasks="tasks"
 		:members="members"
 		:options="options"
-		@updateTask="updateTask">
+		@updateTask="updateTask"
+		@deleteTask="deleteTask">
 	</semantic-kanban>  
 </template>
 
@@ -23,11 +24,11 @@ export default {
 				description: 'Winter is coming...',
 				status: 'doing',
 				dueDate: '2017-09-09 07:00',
-				owner: 1,
+				owner: 2,
 				type: 'feature'
 			},
 			{
-				id: 3,
+				id: 2,
 				subject: 'Kill Cersei',
 				description: 'Shame!',
 				status: 'blocked',
@@ -37,14 +38,12 @@ export default {
 			}],
 			members: [{
 				id: 1,
-				name: 'Danilo'
-			},
-			{
-				id: 2,
-				name: 'Marina'
+				name: 'Danilo',
+				avatar: ''
 			}],
 			options: {
 				defaultTaskDialog: true,
+				defaultConfirmDialog: true,
 				taskExtraContent () {
 					return function () {
 						const dueDate = this.task.dueDate
@@ -65,6 +64,9 @@ export default {
 	},
 	methods: {
 		updateTask (task) {
+			console.log(task)
+		},
+		deleteTask (task) {
 			console.log(task)
 		}
 	}

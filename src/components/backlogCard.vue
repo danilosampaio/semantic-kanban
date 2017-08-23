@@ -2,7 +2,7 @@
 	<div
 		class="ui blue card"
 		v-bind:id="task.id"
-		v-on:click="openTask(task)">
+		v-on:click="openTask">
 		<a class="content" v-html="_topContent"></a>
 		<div class="content">
 			{{formattedTaskDescription}}
@@ -14,13 +14,16 @@
 <script type="text/javascript">
 	import wrap from 'greedy-wrap'
 	import _ from 'lodash'
-	import moment from 'moment'
 
 	export default {
 		props: ['task', 'owners', 'extraContent', 'topContent'],
 		methods: {
-			openTask () {
-				this.$emit('openTask', this.task)
+			openTask (e) {
+				if (e.srcElement.className === 'ui close icon') {
+					this.$emit('confirmDeleteTask', this.task)
+				} else {
+					this.$emit('openTask', this.task)
+				}
 			}
 		},
 		computed: {
@@ -54,13 +57,10 @@
 					${dueDate}`
 			},
 			_topContent () {
-				const semafor = this.task.dueDate && this.task.dueDate <= moment().toDate()
-					? 'ui red circle icon'
-					: 'ui green circle icon'
 				const formattedSubject = this.formattedSubject
 				return this.topContent ? this.topContent() : `
 					<div class="right floated meta">
-						<i class="${semafor}"></i>
+						<i class="ui close icon"></i>
 					</div>
 					${formattedSubject}`
 			}

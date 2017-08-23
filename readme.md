@@ -27,13 +27,14 @@ $ npm install --save semantic-kanban
 		:tasks="tasks"
 		:members="members"
 		:options="options"
-		@updateTask="updateTask">
+		@updateTask="updateTask"
+		@deleteTask="deleteTask">
 	</semantic-kanban>	
 </template>
 
 <script type="text/javascript">
 
-	import SemanticKanban from 'semantic-kanban';
+	import SemanticKanban from 'semantic-kanban'
 
 	export default {
 		components: {
@@ -55,13 +56,17 @@ $ npm install --save semantic-kanban
 					avatar: 'img/avatar.png'
 				}],
 				options: {
-					defaultTaskDialog: true
+					defaultTaskDialog: true,
+					defaultConfirmDialog: true
 				}
 			}
 		},
 		methods: {
 			updateTask (task) {
-				console.log(task);
+				console.log(task)
+			},
+			deleteTask (task) {
+				console.log(task)
 			}
 		}
 	}
@@ -83,13 +88,14 @@ $ npm install --save semantic-kanban
 		:tasks="tasks"
 		:members="members"
 		:options="options"
-		@updateTask="updateTask">
+		@updateTask="updateTask"
+		@deleteTask="deleteTask">
 	</semantic-kanban>	
 </template>
 
 <script type="text/javascript">
 
-	import SemanticKanban from 'semantic-kanban';
+	import SemanticKanban from 'semantic-kanban'
 
 	export default {
 		components: {
@@ -122,6 +128,7 @@ $ npm install --save semantic-kanban
 				}],
 				options: {
 					defaultTaskDialog: true,
+					defaultConfirmDialog: true,
 					taskExtraContent () {
 						return function() {
 							const dueDate = this.task.dueDate;
@@ -143,6 +150,9 @@ $ npm install --save semantic-kanban
 		methods: {
 			updateTask (task) {
 				console.log(task);
+			},
+			deleteTask (task) {
+				console.log(task)
 			}
 		}
 	}
@@ -226,6 +236,11 @@ Type: `boolean`
 
 Open default dialog for editing task. Set it to false to use a custom dialog.
 
+
+#### `defaultConfirmDialog`
+Type: `boolean`
+
+Open default dialog for delete task. Set it to false to use a custom dialog.
 
 
 #### `columnLabels`

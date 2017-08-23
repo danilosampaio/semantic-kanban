@@ -20,7 +20,8 @@
 						:owners="members"
 						:extra-content="_backlogExtraContent"
 						:top-content="_backlogTopContent"
-						@openTask="openTask">
+						@openTask="openTask"
+						@confirmDeleteTask="confirmDeleteTask">
 			    </backlog-card>
 				</div>
 			</div>
@@ -61,7 +62,8 @@
 								:key="t.id"
 								:extra-content="_taskExtraContent"
 				    			:top-content="_taskTopContent"
-								@openTask="openTask">
+								@openTask="openTask"
+								@confirmDeleteTask="confirmDeleteTask">
 							</task-card>
 						</div>
 						<!-- Blocked cards container -->
@@ -72,7 +74,8 @@
 								:key="t.id"
 								:extra-content="_taskExtraContent"
 				    			:top-content="_taskTopContent"
-								@openTask="openTask">
+								@openTask="openTask"
+								@confirmDeleteTask="confirmDeleteTask">
 							</task-card>
 						</div>
 						<!-- Done cards container -->
@@ -83,7 +86,8 @@
 								:key="t.id"
 								:extra-content="_taskExtraContent"
 				    			:top-content="_taskTopContent"
-								@openTask="openTask">
+								@openTask="openTask"
+								@confirmDeleteTask="confirmDeleteTask">
 							</task-card>
 						</div>
 					</div>					
@@ -93,8 +97,12 @@
 		<task-dialog
 			:owners="members"
 			@updateTask="updateTask"
-			ref="dialog">			
+			ref="dialog">
 		</task-dialog>
+		<confirm-dialog
+			@deleteTask="deleteTask"
+			ref="confirm">
+		</confirm-dialog>
 	</div>
 </template>
 
@@ -108,12 +116,14 @@
 	import BacklogCard from './components/backlogCard.vue'
 	import TaskCard from './components/taskCard.vue'
 	import TaskDialog from './components/taskDialog.vue'
+	import ConfirmDialog from './components/confirmDialog.vue'
 
 	export default {
 		components: {
 			BacklogCard,
 			TaskCard,
-			TaskDialog
+			TaskDialog,
+			ConfirmDialog
 		},
 		props: {
 			tasks: {
@@ -254,6 +264,16 @@
 						this.$emit('newTask')
 					}
 				}
+			},
+			confirmDeleteTask (task) {
+				if (!this.options || this.options.defaultConfirmDialog) {
+					this.$refs.confirm.show(task)
+				} else {
+					this.$emit('confirmDeleteTask')
+				}
+			},
+			deleteTask (task) {
+				this.$emit('deleteTask', task)
 			},
 			getTaskById (id) {
 				const backlogTask = _.find(this._backlog, {id: id})

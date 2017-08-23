@@ -17,6 +17,6 @@ describe('TaskCard.vue', () => {
 		const vm = new Constructor(props).$mount()
 		const html = vm.$el.querySelector('.card div').innerHTML
 
-		expect(html.replace(/(\t|\n)/g, '')).to.equal('<i class="ui green circle icon"></i>')
+		expect(html.replace(/(\t|\n)/g, '')).to.equal('<i class="ui close icon"></i>')
 	})
 })
