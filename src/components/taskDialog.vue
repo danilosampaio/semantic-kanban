@@ -17,8 +17,6 @@
 							<option v-for="ow in owners" :value="ow.id">{{ow.name}}</option>
 						</select>
 					</div>
-				</div>
-				<div class="fields">
 					<div class="required field">
 						<label>Due Date</label>
 						<input 
@@ -37,6 +35,25 @@
 							<option value="done">Done</option>
 						</select>
 					</div>
+				</div>
+				<div class="fields">
+					<div
+						v-for="tag in _tags"
+						:class="getTagClass(tag)">
+						{{formattedTag(tag)}}
+						<i v-on:click="deleteTag(tag)" class="close icon"></i>
+					</div>
+					<div class="ui input">
+						<input
+							v-if="newTag"
+							v-on:keyup.enter="saveNewTag"
+							v-on:keyup.esc="cancelNewTag"
+							type="text"
+							name="newTag">
+					</div>
+					<a v-on:click="addNewTag" class="ui left pointing basic label">
+						<i class="plus icon"></i> New tag
+					</a>
 				</div>
 			</form>
 			<button v-on:click="saveTask()" class="ui button">Save</button>
@@ -61,8 +78,17 @@
 					description: null,
 					status: null,
 					owner: null,
-					dueDate: null
-				}
+					dueDate: null,
+					tags: []
+				},
+				newTag: false
+			}
+		},
+		computed: {
+			_tags () {
+				return this.task && this.task.tags
+					? this.task.tags
+					: []
 			}
 		},
 		methods: {
@@ -76,6 +102,7 @@
 					this.task.status = 'backlog'
 					this.task.owner = null
 					this.task.dueDate = null
+					this.task.tags = []
 				}
 				$(this.$el).modal('show')
 			},
@@ -85,6 +112,33 @@
 			saveTask () {
 				this.$emit('updateTask', this.task)
 				this.hide()
+			},
+			formattedTag (tag) {
+				if (typeof tag === 'object') {
+					return tag.title
+				} else {
+					return tag
+				}
+			},
+			getTagClass (tag) {
+				if (typeof tag === 'object') {
+					return 'ui ' + tag.color + ' label'
+				} else {
+					return 'ui label'
+				}
+			},
+			addNewTag () {
+				this.newTag = true
+			},
+			saveNewTag (e) {
+				this.newTag = false
+				this.$emit('addTag', this.task, e.srcElement.value)
+			},
+			cancelNewTag () {
+				this.newTag = false
+			},
+			deleteTag (tag) {
+				this.$emit('deleteTag', this.task, tag)
 			}
 		},
 		mounted () {

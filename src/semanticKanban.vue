@@ -97,6 +97,8 @@
 		<task-dialog
 			:owners="members"
 			@updateTask="updateTask"
+			@addTag="addTag"
+			@deleteTag="deleteTag"
 			ref="dialog">
 		</task-dialog>
 		<confirm-dialog
@@ -285,6 +287,12 @@
 			},
 			updateTask (task) {
 				this.$emit('updateTask', task)
+			},
+			addTag (task, tag) {
+				this.$emit('addTag', task, tag)
+			},
+			deleteTag (task, tag) {
+				this.$emit('deleteTag', task, tag)
 			},
 			configDragula () {
 				const self = this

@@ -17,5 +17,6 @@ describe('TaskDialog.vue', () => {
 		const columns = _.filter(vm.$el.querySelector('.segment div').textContent.split(' '), (el) => el !== '')
 
 		expect(columns[0]).to.equal('Subject')
+		expect(vm.owners[0].id).to.equal(1)
 	})
 })

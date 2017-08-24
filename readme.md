@@ -206,7 +206,19 @@ Due date of the tasks. Format: `'YYYY-MM-DD hh:mm'`
 #### `owner`
 Type: `number`
 
-Member Id from members list.`
+Member Id from members list.
+
+
+#### `tags`
+Type: `Array`
+
+Tags of the task. 
+
+Ex: ['critical', 'help-wanted'].
+
+Ex2: [{title: 'critical', color: 'red'}].
+
+
 
 
 
@@ -314,6 +326,47 @@ Default return:
 	${dueDate}
 
 ```
+
+
+
+
+
+### Events
+
+#### @openTask
+
+Emitted when the task card is clicked.
+
+
+#### @newTask
+
+Emitted when the `New Task` button is clicked.
+
+
+#### @updateTask
+
+Emitted when the task is updated by `drag and drop` between the status columns, or when the `save` button is clicked on the task dialog.
+
+
+#### @confirmDeleteTask
+
+Emitted when the `close` button is clicked.
+
+
+#### @deleteTask
+
+Emitted when the `confirm` button is clicked.
+
+
+#### @addTag
+
+Emitted when a new tag is added in the task dialog.
+
+
+#### @deleteTag
+
+Emitted when a tag is deleted in the task dialog.
+
 
 
 

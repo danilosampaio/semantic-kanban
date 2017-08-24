@@ -7,6 +7,13 @@
 		<div class="content">
 			{{formattedTaskDescription}}
 		</div>
+		<div v-if="_tags.length > 0" class="content">
+			<div
+				v-for="tag in _tags"
+				:class="getTagClass(tag)">
+				{{formattedTag(tag)}}
+			</div>
+		</div>
 		<div class="extra content" v-html="_extraContent"></div>
 	</div>
 </template>
@@ -29,6 +36,20 @@
 				} else {
 					this.$emit('openTask', this.task)
 				}
+			},
+			formattedTag (tag) {
+				if (typeof tag === 'object') {
+					return tag.title
+				} else {
+					return tag
+				}
+			},
+			getTagClass (tag) {
+				if (typeof tag === 'object') {
+					return 'ui ' + tag.color + ' label'
+				} else {
+					return 'ui label'
+				}
 			}
 		},
 		computed: {
@@ -44,6 +65,11 @@
 					: description.length > 100
 						? description.substr(0, 100)
 						: description
+			},
+			_tags () {
+				return this.task && this.task.tags
+					? this.task.tags
+					: []
 			},
 			_extraContent () {
 				const dueDate = this.task.dueDate
