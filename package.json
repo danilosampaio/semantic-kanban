@@ -1,7 +1,12 @@
 {
   "name": "semantic-kanban",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A simple Kanban Component built with Semantic-UI + Vue.js",
+  "keywords": [
+    "kanban",
+    "vuejs",
+    "semantic-ui"
+  ],
   "author": {
     "name": "Danilo Sampaio",
     "email": "danilo.sampaio@gmail.com",
@@ -24,7 +29,7 @@
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
-    "semantic-ui": "^2.2.13",
+    "semantic-ui-css": "^2.2.12",
     "vue": "^2.3.3"
   },
   "devDependencies": {

@@ -112,9 +112,8 @@
 	import _ from 'lodash'
 	import $ from 'jquery'
 	import dragula from 'dragula'
-	import '../node_modules/dragula/dist/dragula.css'
-	import '../node_modules/semantic-ui/dist/semantic'
-	import '../node_modules/semantic-ui/dist/semantic.css'
+	import 'semantic-ui-css/semantic.min'
+	import 'semantic-ui-css/semantic.min.css'
 	import BacklogCard from './components/backlogCard.vue'
 	import TaskCard from './components/taskCard.vue'
 	import TaskDialog from './components/taskDialog.vue'
@@ -363,3 +362,29 @@
 		}
 	}
 </script>
+
+<style type="text/css">
+	/* dragula css */
+	.gu-mirror {
+		position: fixed !important;
+		margin: 0 !important;
+		z-index: 9999 !important;
+		opacity: 0.8;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+		filter: alpha(opacity=80);
+	}
+	.gu-hide {
+		display: none !important;
+	}
+	.gu-unselectable {
+		-webkit-user-select: none !important;
+		-moz-user-select: none !important;
+		-ms-user-select: none !important;
+		user-select: none !important;
+	}
+	.gu-transit {
+		opacity: 0.2;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+		filter: alpha(opacity=20);
+	}
+</style>
