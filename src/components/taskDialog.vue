@@ -65,8 +65,8 @@
 	import _ from 'lodash'
 	import $ from 'jquery'
 	import moment from 'moment'
-	import '../../node_modules/@fengyuanchen/datepicker/dist/datepicker.js'
-	import '../../node_modules/@fengyuanchen/datepicker/dist/datepicker.css'
+	import '@fengyuanchen/datepicker'
+	import '@fengyuanchen/datepicker/dist/datepicker.css'
 
 	export default {
 		props: ['owners'],
