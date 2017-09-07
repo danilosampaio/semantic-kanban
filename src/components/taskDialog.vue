@@ -76,7 +76,7 @@
 					id: null,
 					subject: null,
 					description: null,
-					status: null,
+					status: 'backlog',
 					owner: null,
 					dueDate: null,
 					tags: []
