@@ -23,7 +23,7 @@ describe('SemanticKanban.vue', () => {
 		const columns = _.filter(vm.$el.querySelector('.segment div').textContent.split(' '), (el) => el !== '')
 
 		expect(columns[0]).to.equal('Backlog')
-		expect(columns[1]).to.equal('Team')
+		expect(columns[1].trim()).to.equal('Team')
 		expect(columns[2]).to.equal('Doing')
 		expect(columns[3]).to.equal('Blocked')
 		expect(columns[4]).to.equal('Done')

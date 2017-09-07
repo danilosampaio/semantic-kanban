@@ -28,7 +28,8 @@ $ npm install --save semantic-kanban
 		:members="members"
 		:options="options"
 		@updateTask="updateTask"
-		@deleteTask="deleteTask">
+		@deleteTask="deleteTask"
+		@updateMember="updateMember">
 	</semantic-kanban>	
 </template>
 
@@ -50,14 +51,15 @@ $ npm install --save semantic-kanban
 					dueDate: '2017-09-09 07:00',
 					owner: 1
 				}],
-		        members: [{
+					members: [{
 					id: 1,
 					name: 'Danilo',
 					avatar: 'img/avatar.png'
 				}],
 				options: {
 					defaultTaskDialog: true,
-					defaultConfirmDialog: true
+					defaultConfirmDialog: true,
+					defaultMemberDialog: true
 				}
 			}
 		},
@@ -67,6 +69,9 @@ $ npm install --save semantic-kanban
 			},
 			deleteTask (task) {
 				console.log(task)
+			},
+			updateMember (member) {
+				console.log(member)
 			}
 		}
 	}
@@ -89,7 +94,8 @@ $ npm install --save semantic-kanban
 		:members="members"
 		:options="options"
 		@updateTask="updateTask"
-		@deleteTask="deleteTask">
+		@deleteTask="deleteTask"
+		@updateMember="updateMember">
 	</semantic-kanban>	
 </template>
 
@@ -129,6 +135,7 @@ $ npm install --save semantic-kanban
 				options: {
 					defaultTaskDialog: true,
 					defaultConfirmDialog: true,
+					defaultMemberDialog: true,
 					taskExtraContent () {
 						return function() {
 							const dueDate = this.task.dueDate;
@@ -153,6 +160,9 @@ $ npm install --save semantic-kanban
 			},
 			deleteTask (task) {
 				console.log(task)
+			},
+			updateMember (member) {
+				console.log(member)
 			}
 		}
 	}
@@ -269,6 +279,14 @@ Default: `New Task`
 
 
 
+#### `newMemberHint`
+Type: `string`
+
+Default: `New Member`
+
+
+
+
 #### `backlogTopContent`
 Type: `function`
 
@@ -366,6 +384,11 @@ Emitted when a new tag is added in the task dialog.
 #### @deleteTag
 
 Emitted when a tag is deleted in the task dialog.
+
+
+#### @updateMember
+
+Emitted when the `save` button is clicked in the member dialog.
 
 
 

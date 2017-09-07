@@ -31,7 +31,10 @@
 					<!-- Column headers -->
 					<div class="equal height row">
 						<div class="three wide center aligned column">
-							<div class="ui grey label">{{_teamLabel}}</div>
+							<div class="ui basic label">
+								<i class="users icon"></i> {{_teamLabel}}
+								<a class="detail" v-on:click="newMember" :title="_newMemberHint"><i class="teal plus icon"></i></a>
+							</div>
 						</div>
 						<div class="five wide column">
 							<div class="ui yellow ribbon label">{{_doingLabel}}</div>
@@ -105,6 +108,10 @@
 			@deleteTask="deleteTask"
 			ref="confirm">
 		</confirm-dialog>
+		<member-dialog
+			@updateMember="updateMember"
+			ref="memberDialog">
+		</member-dialog>
 	</div>
 </template>
 
@@ -118,13 +125,15 @@
 	import TaskCard from './components/taskCard.vue'
 	import TaskDialog from './components/taskDialog.vue'
 	import ConfirmDialog from './components/confirmDialog.vue'
+	import MemberDialog from './components/memberDialog.vue'
 
 	export default {
 		components: {
 			BacklogCard,
 			TaskCard,
 			TaskDialog,
-			ConfirmDialog
+			ConfirmDialog,
+			MemberDialog
 		},
 		props: {
 			tasks: {
@@ -230,6 +239,11 @@
 					? this.options.newTaskHint
 					: 'New Task'
 			},
+			_newMemberHint () {
+				return this.options && this.options.newMemberHint
+					? this.options.newMemberHint
+					: 'New Member'
+			},
 			_backlogExtraContent () {
 				return this.options && this.options.backlogExtraContent
 					? this.options.backlogExtraContent()
@@ -292,6 +306,16 @@
 			},
 			deleteTag (task, tag) {
 				this.$emit('deleteTag', task, tag)
+			},
+			newMember () {
+				if (!this.options || this.options.defaultMemberDialog) {
+					this.$refs.memberDialog.show()
+				} else {
+					this.$emit('newMember')
+				}
+			},
+			updateMember (member) {
+				this.$emit('updateMember', member)
 			},
 			configDragula () {
 				const self = this

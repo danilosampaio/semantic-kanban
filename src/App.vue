@@ -6,7 +6,8 @@
 		@updateTask="updateTask"
 		@deleteTask="deleteTask"
 		@addTag="addTag"
-		@deleteTag="deleteTag">
+		@deleteTag="deleteTag"
+		@updateMember="updateMember">
 	</semantic-kanban>  
 </template>
 
@@ -54,6 +55,7 @@ export default {
 			options: {
 				defaultTaskDialog: true,
 				defaultConfirmDialog: true,
+				defaultMemberDialog: true,
 				taskExtraContent () {
 					return function () {
 						const dueDate = this.task.dueDate
@@ -84,6 +86,9 @@ export default {
 		},
 		addTag (task, tag) {
 			console.log(task, tag)
+		},
+		updateMember (member) {
+			console.log(member)
 		}
 	}
 }
