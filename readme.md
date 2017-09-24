@@ -195,7 +195,7 @@ Type: `string`
 Description of the task.
 
 #### `status`
-Type: `string` ('backlog' | 'doing' | 'blocked' | 'done'`)
+Type: `string` ('backlog' | 'doing' | 'blocked' | 'done' | 'archived'`)
 
 Status of the task:
 
@@ -206,6 +206,8 @@ Status of the task:
 `'blocked'`: second column of board, containing blocked/stoped tasks.
 
 `'done'`: right column of board, containing in done tasks.
+
+`'archived'` represents a finished task that it's not viewed on the board.
 
 #### `dueDate`
 Type: `date`
@@ -390,12 +392,6 @@ Emitted when a tag is deleted in the task dialog.
 
 Emitted when the `save` button is clicked in the member dialog.
 
-
-
-
-## Roadmap
-- Add more tests
-- Allow add tags in tasks
 
 
 
