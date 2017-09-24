@@ -33,6 +33,7 @@
 							<option value="doing">Doing</option>
 							<option value="blocked">Blocked</option>
 							<option value="done">Done</option>
+							<option value="archived">Archived</option>
 						</select>
 					</div>
 				</div>
