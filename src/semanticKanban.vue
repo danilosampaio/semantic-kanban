@@ -173,8 +173,8 @@
 				return _.filter(this.tasks, {status: 'backlog'})
 			},
 			_team () {
-				if (this.tasks && this.tasks.length) {
-					const tasks = _.filter(this.tasks, task => task.status !== 'backlog' && task.status !== 'archived')
+				const tasks = _.filter(this.tasks, task => task.status !== 'backlog' && task.status !== 'archived')
+				if (tasks && tasks.length) {					
 					const team = []
 
 					for (let i = 0; i < tasks.length; i++) {
@@ -359,7 +359,7 @@
 				})
 
 				drake.on('drop', function (el, target, source, sibling) {
-					var id = Number($(el).attr('id'))
+					var id = $(el).attr('id')
 					var owner = $(target).attr('owner')
 					var status = $(target).attr('class').split(' ').reverse()[0]
 
@@ -367,7 +367,13 @@
 					var sourceStatus = $(source).attr('class').split(' ').reverse()[0]
 
 					if (owner !== sourceOwner || status !== sourceStatus) {
-						var task = _.assign({}, self.getTaskById(id))
+						var task = _.assign({
+							id: null,
+							subject: null,
+							description: null,
+							dueDate: null,
+							tags: []
+						}, self.getTaskById(id))
 						task.status = status
 						task.owner = owner
 
