@@ -228,7 +228,7 @@ Tags of the task.
 
 Ex: ['critical', 'help-wanted'].
 
-Ex2: [{title: 'critical', color: 'red'}].
+Ex2: [{value: 'critical', color: 'red'}].
 
 
 
@@ -357,6 +357,8 @@ Default return:
 
 Emitted when the task card is clicked.
 
+`Params` : `task`
+
 
 #### @newTask
 
@@ -367,25 +369,35 @@ Emitted when the `New Task` button is clicked.
 
 Emitted when the task is updated by `drag and drop` between the status columns, or when the `save` button is clicked on the task dialog.
 
+`Params` : `task`
+
 
 #### @confirmDeleteTask
 
 Emitted when the `close` button is clicked.
+
+`Params` : `task`
 
 
 #### @deleteTask
 
 Emitted when the `confirm` button is clicked.
 
+`Params` : `task`
+
 
 #### @addTag
 
 Emitted when a new tag is added in the task dialog.
 
+`Params` : `task`, `tag`
+
 
 #### @deleteTag
 
 Emitted when a tag is deleted in the task dialog.
+
+`Params` : `task`, `tag`
 
 
 #### @updateMember

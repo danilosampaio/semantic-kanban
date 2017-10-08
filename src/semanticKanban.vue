@@ -282,7 +282,7 @@
 				if (!this.options || this.options.defaultConfirmDialog) {
 					this.$refs.confirm.show(task)
 				} else {
-					this.$emit('confirmDeleteTask')
+					this.$emit('confirmDeleteTask', task)
 				}
 			},
 			deleteTask (task) {
