@@ -39,7 +39,7 @@
 			},
 			formattedTag (tag) {
 				if (typeof tag === 'object') {
-					return tag.title
+					return tag.value
 				} else {
 					return tag
 				}

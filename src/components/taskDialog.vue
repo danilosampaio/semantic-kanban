@@ -44,15 +44,24 @@
 						{{formattedTag(tag)}}
 						<i v-on:click="deleteTag(tag)" class="close icon"></i>
 					</div>
-					<div class="ui input">
-						<input
-							v-if="newTag"
-							v-on:keyup.enter="saveNewTag"
-							v-on:keyup.esc="cancelNewTag"
-							type="text"
-							name="newTag">
+				</div>
+				<div class="fields">
+					<div class="field" v-if="newTag">
+						<div class="ui mini input">
+							<input
+								v-on:keyup.enter="saveNewTag"
+								v-on:keyup.esc="cancelNewTag"
+								type="text"
+								name="newTag">
+						</div>
 					</div>
-					<a v-on:click="addNewTag" class="ui left pointing basic label">
+					<div class="field" v-if="newTag">
+						<chrome-picker
+							v-model="colors"
+							:palette="palette"
+							ref="colorpicker" />
+					</div>
+					<a v-if="!newTag" v-on:click="addNewTag" class="ui left pointing basic label">
 						<i class="plus icon"></i> New tag
 					</a>
 				</div>
@@ -68,8 +77,12 @@
 	import moment from 'moment'
 	import '@fengyuanchen/datepicker'
 	import '@fengyuanchen/datepicker/dist/datepicker.css'
+	import { Compact } from 'vue-color'
 
 	export default {
+		components: {
+			'chrome-picker': Compact
+		},
 		props: ['owners'],
 		data () {
 			return {
@@ -82,7 +95,31 @@
 					dueDate: null,
 					tags: []
 				},
-				newTag: false
+				newTag: false,
+				palette: ['#db2828', '#f2711c', '#fbbd08', '#b5cc18', '#21ba45', '#00b5ad', '#2185d0', '#a333c8', '#e03997', '#a5673f', '#1b1c1d'],
+				semanticColors: ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'purple', 'pink', 'brown', 'black'],
+				colors: {
+					hex: '#194d33',
+					hsl: {
+						h: 150,
+						s: 0.5,
+						l: 0.2,
+						a: 1
+					},
+					hsv: {
+						h: 150,
+						s: 0.66,
+						v: 0.30,
+						a: 1
+					},
+					rgba: {
+						r: 25,
+						g: 77,
+						b: 51,
+						a: 1
+					},
+					a: 1
+				}
 			}
 		},
 		computed: {
@@ -94,6 +131,7 @@
 		},
 		methods: {
 			show (task) {
+				this.newTag = false
 				if (task) {
 					_.assign(this.task, task)
 				} else {
@@ -116,7 +154,7 @@
 			},
 			formattedTag (tag) {
 				if (typeof tag === 'object') {
-					return tag.title
+					return tag.value
 				} else {
 					return tag
 				}
@@ -133,7 +171,11 @@
 			},
 			saveNewTag (e) {
 				this.newTag = false
-				this.$emit('addTag', this.task, e.srcElement.value)
+				const pickedColorIndex = this.$refs.colorpicker.pick ? this.palette.indexOf(this.$refs.colorpicker.pick.toLowerCase()) : -1
+				const color = pickedColorIndex > -1 ? this.semanticColors[pickedColorIndex] : ''
+				const value = e.srcElement.value
+				this.task.tags.push({value, color})
+				this.$emit('addTag', this.task, {value, color})
 			},
 			cancelNewTag () {
 				this.newTag = false

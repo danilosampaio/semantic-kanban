@@ -30,7 +30,8 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "semantic-ui-css": "^2.2.12",
-    "vue": "^2.3.3"
+    "vue": "^2.3.3",
+    "vue-color": "^2.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
