@@ -96,26 +96,26 @@
 					tags: []
 				},
 				newTag: false,
-				palette: ['#db2828', '#f2711c', '#fbbd08', '#b5cc18', '#21ba45', '#00b5ad', '#2185d0', '#a333c8', '#e03997', '#a5673f', '#1b1c1d'],
+				palette: ['#DB2828', '#F2711C', '#FBBD08', '#B5CC18', '#21BA45', '#00B5AD', '#2185D0', '#A333C8', '#E03997', '#A5673F', '#1B1C1D'],
 				semanticColors: ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'purple', 'pink', 'brown', 'black'],
 				colors: {
-					hex: '#194d33',
+					hex: '#21BA45',
 					hsl: {
-						h: 150,
-						s: 0.5,
-						l: 0.2,
+						h: 134,
+						s: 0.7,
+						l: 0.43,
 						a: 1
 					},
 					hsv: {
-						h: 150,
-						s: 0.66,
-						v: 0.30,
+						h: 134,
+						s: 0.82,
+						v: 0.73,
 						a: 1
 					},
 					rgba: {
-						r: 25,
-						g: 77,
-						b: 51,
+						r: 33,
+						g: 186,
+						b: 69,
 						a: 1
 					},
 					a: 1
@@ -171,10 +171,12 @@
 			},
 			saveNewTag (e) {
 				this.newTag = false
-				const pickedColorIndex = this.$refs.colorpicker.pick ? this.palette.indexOf(this.$refs.colorpicker.pick.toLowerCase()) : -1
+				const pickedColorIndex = this.$refs.colorpicker.pick ? this.palette.indexOf(this.$refs.colorpicker.pick) : -1
 				const color = pickedColorIndex > -1 ? this.semanticColors[pickedColorIndex] : ''
 				const value = e.srcElement.value
-				this.task.tags.push({value, color})
+				if (!this.task.id) {
+					this.task.tags.push({value, color})
+				}
 				this.$emit('addTag', this.task, {value, color})
 			},
 			cancelNewTag () {
