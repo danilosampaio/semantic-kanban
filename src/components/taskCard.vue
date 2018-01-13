@@ -31,7 +31,7 @@
 					: this.task.status === 'done' ? 'ui green card' : 'ui grey card'
 			},
 			openTask (e) {
-				if (e.srcElement.className === 'ui close icon') {
+				if (e.target.className === 'ui close icon') {
 					this.$emit('confirmDeleteTask', this.task)
 				} else {
 					this.$emit('openTask', this.task)

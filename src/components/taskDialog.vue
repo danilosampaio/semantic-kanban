@@ -173,7 +173,7 @@
 				this.newTag = false
 				const pickedColorIndex = this.$refs.colorpicker.pick ? this.palette.indexOf(this.$refs.colorpicker.pick) : -1
 				const color = pickedColorIndex > -1 ? this.semanticColors[pickedColorIndex] : ''
-				const value = e.srcElement.value
+				const value = e.target.value
 				if (!this.task.id) {
 					this.task.tags.push({value, color})
 				}

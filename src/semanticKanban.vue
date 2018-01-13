@@ -174,7 +174,7 @@
 			},
 			_team () {
 				const tasks = _.filter(this.tasks, task => task.status !== 'backlog' && task.status !== 'archived')
-				if (tasks && tasks.length) {					
+				if (tasks && tasks.length) {
 					const team = []
 
 					for (let i = 0; i < tasks.length; i++) {
