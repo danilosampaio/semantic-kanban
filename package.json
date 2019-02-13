@@ -1,6 +1,6 @@
 {
   "name": "semantic-kanban",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "A simple Kanban Component built with Semantic-UI + Vue.js",
   "keywords": [
     "kanban",
