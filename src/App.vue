@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import SemanticKanban from './semanticKanban'
 
 export default {
@@ -76,19 +77,34 @@ export default {
 	},
 	methods: {
 		updateTask (task) {
-			console.log(task)
+			const existingTask = _.find(this.tasks, {id: task.id})
+			if (existingTask) {
+				_.assign(existingTask, task)
+			} else {
+				task.id = _.last(_.sortBy(this.tasks, ['id'])).id + 1
+				this.tasks.push(task)
+			}
 		},
 		deleteTask (task) {
-			console.log(task)
+			_.remove(this.tasks, t => t.id === task.id)
 		},
 		deleteTag (task, tag) {
 			console.log(task, tag)
 		},
 		addTag (task, tag) {
-			console.log(task, tag)
+			const existingTask = _.find(this.tasks, {id: task.id})
+			if (existingTask) {
+				existingTask.tags.push(tag)
+			}
 		},
 		updateMember (member) {
-			console.log(member)
+			const existingMember = _.find(this.members, {id: member.id})
+			if (existingMember) {
+				_.assign(existingMember, member)
+			} else {
+				member.id = _.last(_.sortBy(this.members, ['id'])).id + 1
+				this.members.push(member)
+			}
 		}
 	}
 }

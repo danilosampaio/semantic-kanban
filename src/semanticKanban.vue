@@ -176,12 +176,18 @@
 				const tasks = _.filter(this.tasks, task => task.status !== 'backlog' && task.status !== 'archived')
 				if (tasks && tasks.length) {
 					const team = []
+					const members = this._members.map(m => {
+						m.doing = []
+						m.blocked = []
+						m.done = []
+						return m
+					})
 
 					for (let i = 0; i < tasks.length; i++) {
 						const task = tasks[i]
-						let member = _.find(this._members, {id: task.owner})
+						let member = _.find(members, {id: task.owner})
 						if (!member) {
-							member = this._members[0]
+							member = members[0]
 						}
 
 						if (!_.find(team, {id: member.id})) {
@@ -189,20 +195,17 @@
 						}
 
 						if (task.status === 'doing') {
-							if (!member.doing) {
-								member.doing = []
+							if (!_.find(member.doing, {id: task.id})) {
+								member.doing.push(task)
 							}
-							member.doing.push(task)
 						} else if (task.status === 'blocked') {
-							if (!member.blocked) {
-								member.blocked = []
+							if (!_.find(member.blocked, {id: task.id})) {
+								member.blocked.push(task)
 							}
-							member.blocked.push(task)
 						} else if (task.status === 'done') {
-							if (!member.done) {
-								member.done = []
+							if (!_.find(member.done, {id: task.id})) {
+								member.done.push(task)
 							}
-							member.done.push(task)
 						}
 					}
 					return _.sortBy(team, ['name'])
@@ -359,7 +362,7 @@
 				})
 
 				drake.on('drop', function (el, target, source, sibling) {
-					var id = $(el).attr('id')
+					var id = Number($(el).attr('id'))
 					var owner = $(target).attr('owner')
 					var status = $(target).attr('class').split(' ').reverse()[0]
 
@@ -367,13 +370,7 @@
 					var sourceStatus = $(source).attr('class').split(' ').reverse()[0]
 
 					if (owner !== sourceOwner || status !== sourceStatus) {
-						var task = _.assign({
-							id: null,
-							subject: null,
-							description: null,
-							dueDate: null,
-							tags: []
-						}, self.getTaskById(id))
+						var task = _.cloneDeep(self.getTaskById(id))
 						task.status = status
 						task.owner = owner
 
